@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+//using System.Web.Http.Cors;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +12,8 @@ using StudentCRMSystem.Models;
 
 namespace StudentCRMSystem.Controllers
 {
+    //[System.Web.Http.Cors.EnableCors("*","*","*")]
+    
     [Route("api/[controller]")]
     [ApiController]
     public class StudentsController : ControllerBase
@@ -21,6 +26,7 @@ namespace StudentCRMSystem.Controllers
         }
 
         // GET: api/Students
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
         {
